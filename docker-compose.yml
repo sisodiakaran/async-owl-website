@@ -11,6 +11,8 @@ services:
     environment:
       NODE_ENV: production
       HOSTNAME: "0.0.0.0"
+      # App must listen on 3000 inside the container; host port comes from PORT in .env
+      PORT: "3000"
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
       interval: 30s
