@@ -77,6 +77,11 @@ body {
   }
 }
 
+/* Vanta background: canvas opacity so server/client className match (avoids hydration mismatch) */
+.vanta-background canvas {
+  opacity: 0.9;
+}
+
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-pink-hot to-brand-yellow-electric;

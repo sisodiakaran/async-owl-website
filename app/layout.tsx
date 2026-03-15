@@ -3,6 +3,7 @@ import { Space_Mono, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { JsonLd } from '@/components/seo/JsonLd'
 import ThemeInit from '@/components/ThemeInit'
+import VantaBackground from '@/components/ui/VantaBackground'
 
 const spaceMono = Space_Mono({
   subsets: ['latin'],
@@ -122,9 +123,12 @@ export default function RootLayout({
         className={`${spaceMono.variable} ${dmSans.variable} font-sans antialiased min-h-screen`}
         suppressHydrationWarning
       >
-        <ThemeInit />
-        <JsonLd />
-        {children}
+        <VantaBackground />
+        <div className="relative z-10">
+          <ThemeInit />
+          <JsonLd />
+          {children}
+        </div>
       </body>
     </html>
   )
