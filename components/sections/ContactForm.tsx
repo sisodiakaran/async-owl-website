@@ -88,7 +88,11 @@ export default function ContactForm() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4"
+                suppressHydrationWarning
+              >
                 {/* Name */}
                 <div>
                   <label

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Space_Mono, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { JsonLd } from '@/components/seo/JsonLd'
+import ThemeInit from '@/components/ThemeInit'
 
 const spaceMono = Space_Mono({
   subsets: ['latin'],
@@ -96,11 +97,7 @@ export const metadata: Metadata = {
     verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
   }),
   applicationName: 'AsyncOwl Portfolio',
-  appleWebApp: {
-    capable: true,
-    title: 'AsyncOwl',
-    statusBarStyle: 'black-translucent',
-  },
+  // PWA capability via <meta name="mobile-web-app-capable"> in layout (modern replacement for deprecated apple-mobile-web-app-capable)
   formatDetection: {
     email: false,
     address: false,
@@ -111,29 +108,6 @@ export const metadata: Metadata = {
   },
 }
 
-const ThemeScript = () => (
-  <script
-    dangerouslySetInnerHTML={{
-      __html: `
-        (function() {
-          try {
-            var theme = localStorage.getItem('asyncowl-theme');
-            if (theme === 'light') {
-              document.documentElement.classList.add('light');
-              document.documentElement.classList.remove('dark');
-            } else {
-              document.documentElement.classList.add('dark');
-              document.documentElement.classList.remove('light');
-            }
-          } catch(e) {
-            document.documentElement.classList.add('dark');
-          }
-        })();
-      `,
-    }}
-  />
-)
-
 export default function RootLayout({
   children,
 }: {
@@ -142,11 +116,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        <ThemeScript />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body
         className={`${spaceMono.variable} ${dmSans.variable} font-sans antialiased min-h-screen`}
+        suppressHydrationWarning
       >
+        <ThemeInit />
         <JsonLd />
         {children}
       </body>

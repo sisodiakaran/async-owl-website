@@ -4,10 +4,11 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowDown, MessageSquare } from 'lucide-react'
 import OwlLogo from '@/components/ui/OwlLogo'
-import { BOOT_SEQUENCE_LINES, SITE_CONFIG } from '@/lib/content'
+import { BOOT_SEQUENCE_LINES } from '@/lib/content'
 
 export default function HeroTerminal() {
   const prefersReducedMotion = useReducedMotion()
+  const [mounted, setMounted] = useState(false)
   const [bootComplete, setBootComplete] = useState(false)
   const [displayedLines, setDisplayedLines] = useState<string[]>([])
   const [currentLine, setCurrentLine] = useState(0)
@@ -16,6 +17,11 @@ export default function HeroTerminal() {
   const terminalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
     if (prefersReducedMotion) {
       setDisplayedLines(BOOT_SEQUENCE_LINES)
       setBootComplete(true)
@@ -46,7 +52,7 @@ export default function HeroTerminal() {
       }, 150)
       return () => clearTimeout(timer)
     }
-  }, [currentLine, currentChar, prefersReducedMotion])
+  }, [mounted, currentLine, currentChar, prefersReducedMotion])
 
   useEffect(() => {
     const interval = setInterval(() => setShowCursor((v) => !v), 530)
@@ -67,26 +73,10 @@ export default function HeroTerminal() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-20 md:pt-24"
       aria-label="Hero section"
     >
-      {/* Background particles */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        {!prefersReducedMotion &&
-          Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 rounded-full bg-brand-yellow-electric/20"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `floatParticle ${8 + Math.random() * 12}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 8}s`,
-              }}
-            />
-          ))}
-      </div>
-
       {/* Scanline overlay */}
       <div className="scanline-overlay" aria-hidden="true" />
 
+      {mounted ? (
       <div className="relative z-20 w-full max-w-3xl">
         {/* Terminal boot sequence */}
         <div
@@ -180,6 +170,9 @@ export default function HeroTerminal() {
           </motion.div>
         )}
       </div>
+      ) : (
+        <div className="relative z-20 w-full max-w-3xl" />
+      )}
     </header>
   )
 }

@@ -25,22 +25,6 @@
   }
 }
 
-@keyframes floatParticle {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-100px) translateX(50px);
-  }
-}
-
 @keyframes progressFill {
   0% {
     width: 0;
