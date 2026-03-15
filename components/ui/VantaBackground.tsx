@@ -13,7 +13,7 @@ const darkTopologyOptions = {
 
 const lightTopologyOptions = {
   backgroundColor: 0xf1e9da,
-  color: 0x541388,
+  color: 0x9370b8, // lighter lavender purple for cream background
 }
 
 function getTopologyOptions(isLight: boolean) {
@@ -28,6 +28,7 @@ function isLightTheme(): boolean {
 export default function VantaBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
   const effectRef = useRef<{ destroy: () => void } | null>(null)
+  const mountedRef = useRef(true)
   const [initFailed, setInitFailed] = useState(false)
   const prefersReducedMotion = useReducedMotion()
 
@@ -41,11 +42,18 @@ export default function VantaBackground() {
       // Vanta topology may reference window.p5 internally (e.g. p5.Vector in sketch)
       if (typeof window !== 'undefined') (window as unknown as { p5: unknown }).p5 = p5
       const options = getTopologyOptions(isLight)
-      const effect = TOPOLOGY({
-        el,
-        p5,
-        ...options,
-      })
+      // Topology is p5-based; base class still runs initThree() and warns when THREE is missing. Suppress that warning.
+      const origWarn = console.warn
+      console.warn = (...args: unknown[]) => {
+        if (typeof args[0] === 'string' && args[0].includes('[VANTA] No THREE defined')) return
+        origWarn.apply(console, args)
+      }
+      let effect: { destroy: () => void }
+      try {
+        effect = TOPOLOGY({ el, p5, ...options })
+      } finally {
+        console.warn = origWarn
+      }
       effectRef.current = effect
       setInitFailed(false)
     } catch {
@@ -72,9 +80,11 @@ export default function VantaBackground() {
 
     if (!shouldRun) return
 
-    // Defer init so the fixed container has layout dimensions (avoids 0x0 or min 200x200 canvas)
+    // Defer init until after layout and ThemeInit have run, so we use the correct theme (dark/light) from the start
     const raf = requestAnimationFrame(() => {
-      initTopology(el, isLightTheme())
+      requestAnimationFrame(() => {
+        if (mountedRef.current) initTopology(el, isLightTheme())
+      })
     })
 
     const observer = new MutationObserver(() => {
@@ -99,6 +109,7 @@ export default function VantaBackground() {
     mediaQuery.addEventListener('change', onResize)
 
     return () => {
+      mountedRef.current = false
       cancelAnimationFrame(raf)
       observer.disconnect()
       mediaQuery.removeEventListener('change', onResize)
