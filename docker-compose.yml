@@ -1,9 +1,6 @@
-# Production Docker Compose for AsyncOwl website
-# Build image: ./scripts/build-docker.sh
-# Then run:    docker compose up -d
-
 services:
   web:
+    build: .
     image: async-owl-website:latest
     container_name: async-owl-website
     restart: unless-stopped
