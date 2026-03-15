@@ -5,7 +5,7 @@
 FROM node:22-bookworm-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN --security=insecure npm ci
 
 # ---- Builder ----
 FROM node:22-bookworm-slim AS builder
@@ -13,7 +13,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm run build
+RUN --security=insecure npm run build
 
 # ---- Runner ----
 FROM node:22-bookworm-slim AS runner

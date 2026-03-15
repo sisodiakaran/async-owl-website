@@ -4,5 +4,6 @@
 
 set -e
 cd "$(dirname "$0")/.."
-docker build --security-opt seccomp=unconfined --no-cache -t async-owl-website:latest .
+export DOCKER_BUILDKIT=1
+docker build --no-cache -t async-owl-website:latest .
 echo "Build done. Start with: docker compose up -d"
