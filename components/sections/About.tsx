@@ -27,7 +27,7 @@ export default function About() {
         >
           <h2 className="font-mono text-2xl md:text-3xl font-bold text-theme-primary mb-12 text-center">
             <span className="text-brand-pink-hot">{'// '}</span>
-            The Owl&apos;s Philosophy
+            About — The Owl&apos;s Philosophy
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">

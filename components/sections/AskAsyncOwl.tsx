@@ -158,8 +158,7 @@ export default function AskAsyncOwl() {
           transition={{ duration: 0.5 }}
           className="font-mono text-2xl md:text-3xl font-bold text-theme-primary mb-4 text-center"
         >
-          <span className="text-brand-pink-hot">{'> '}</span>
-          ask_asyncowl
+          Ask AsyncOwl
         </motion.h2>
         <motion.p
           initial={prefersReducedMotion ? {} : { opacity: 0 }}
@@ -167,7 +166,7 @@ export default function AskAsyncOwl() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="font-mono text-sm text-theme-secondary text-center mb-8"
         >
-          AI-powered assistant trained on Karan&apos;s profile
+          <span className="text-brand-pink-hot">{'> '}</span> ask_asyncowl · AI-powered assistant trained on Karan&apos;s profile
         </motion.p>
 
         <motion.div

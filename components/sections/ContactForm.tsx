@@ -58,8 +58,7 @@ export default function ContactForm() {
           transition={{ duration: 0.5 }}
           className="font-mono text-2xl md:text-3xl font-bold text-theme-primary mb-4 text-center"
         >
-          <span className="text-brand-yellow-electric">{'> '}</span>
-          ping asyncowl
+          Get in Touch
         </motion.h2>
         <motion.p
           initial={prefersReducedMotion ? {} : { opacity: 0 }}
@@ -67,7 +66,7 @@ export default function ContactForm() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="font-mono text-sm text-theme-secondary text-center mb-8"
         >
-          send_message --to=karan --format=terminal
+          <span className="text-brand-yellow-electric">{'> '}</span> ping asyncowl · send_message --to=karan --format=terminal
         </motion.p>
 
         <motion.div

@@ -62,7 +62,8 @@ export default function HeroTerminal() {
   )
 
   return (
-    <section
+    <header
+      id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-20 md:pt-24"
       aria-label="Hero section"
     >
@@ -137,17 +138,17 @@ export default function HeroTerminal() {
             className="mt-8 text-center"
           >
             <div className="flex justify-center mb-4">
-              <OwlLogo size={72} animated={!prefersReducedMotion} />
+              <OwlLogo size={72} animated={!prefersReducedMotion} alt="AsyncOwl — Karan Singh Sisodia's developer avatar" />
             </div>
 
             <h1 className="font-mono text-3xl md:text-5xl font-bold text-theme-primary mb-2">
-              <span className="text-brand-yellow-electric">@</span>AsyncOwl
+              Karan Singh Sisodia
             </h1>
             <p className="font-sans text-lg md:text-xl text-theme-secondary mb-1">
-              {SITE_CONFIG.fullName}
+              @AsyncOwl · Technical Lead · AI & Software Engineering
             </p>
             <p className="font-mono text-sm text-brand-pink-hot mb-6">
-              {SITE_CONFIG.currentRole} @ {SITE_CONFIG.currentCompany}
+              16+ years bridging software and hardware. Building intelligent systems, leading teams, and shipping IoT solutions from Chandigarh, India.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -179,6 +180,6 @@ export default function HeroTerminal() {
           </motion.div>
         )}
       </div>
-    </section>
+    </header>
   )
 }

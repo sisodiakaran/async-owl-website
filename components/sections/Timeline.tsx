@@ -23,7 +23,7 @@ export default function Timeline() {
           transition={{ duration: 0.5 }}
           className="font-mono text-2xl md:text-3xl font-bold text-theme-primary mb-4 text-center"
         >
-          <span className="text-brand-yellow-electric">$</span> git log --oneline
+          Career Timeline
         </motion.h2>
         <motion.p
           initial={prefersReducedMotion ? {} : { opacity: 0 }}
@@ -31,7 +31,7 @@ export default function Timeline() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="font-mono text-sm text-theme-secondary text-center mb-12"
         >
-          16+ years of commits to the craft
+          <span className="text-brand-yellow-electric">$</span> git log --oneline · 16+ years of commits to the craft
         </motion.p>
 
         {/* Git-style branch line */}

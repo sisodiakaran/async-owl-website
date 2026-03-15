@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Mono, DM_Sans } from 'next/font/google'
 import './globals.css'
+import { JsonLd } from '@/components/seo/JsonLd'
 
 const spaceMono = Space_Mono({
   subsets: ['latin'],
@@ -17,36 +18,94 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'AsyncOwl — Karan Singh Sisodia | AI & Software Engineering',
+  metadataBase: new URL('https://asyncowl.com'),
+  title: {
+    default: 'Karan Singh Sisodia (@AsyncOwl) — AI & Software Engineering',
+    template: '%s | Karan Singh Sisodia',
+  },
   description:
-    'Portfolio of Karan Singh Sisodia (AsyncOwl) — 16+ year AI & Software Engineering Professional. Technical Lead specializing in AI, IoT, Firmware, and Cloud systems.',
+    'Personal portfolio of Karan Singh Sisodia (@AsyncOwl) — Technical Lead with 16+ years bridging AI, IoT, and full-stack engineering. Based in Chandigarh, India.',
   keywords: [
     'Karan Singh Sisodia',
     'AsyncOwl',
-    'AI Engineer',
-    'Software Architect',
-    'IoT',
-    'ESP32',
-    'Node-RED',
-    'Technical Lead',
-    'Full Stack Developer',
+    'AI software engineer',
+    'IoT developer India',
+    'Technical Lead Chandigarh',
+    'Node-RED developer',
+    'ESP32 firmware engineer',
+    'software architect India',
+    'sisodiakaran',
   ],
-  authors: [{ name: 'Karan Singh Sisodia', url: 'https://github.com/sisodiakaran' }],
+  authors: [{ name: 'Karan Singh Sisodia', url: 'https://asyncowl.com' }],
+  creator: 'Karan Singh Sisodia',
+  publisher: 'Karan Singh Sisodia',
+  category: 'Technology',
+  alternates: {
+    canonical: 'https://asyncowl.com',
+    languages: {
+      'en-IN': 'https://asyncowl.com',
+      'en-US': 'https://asyncowl.com',
+    },
+  },
   openGraph: {
-    title: 'AsyncOwl — Karan Singh Sisodia',
+    type: 'profile',
+    url: 'https://asyncowl.com',
+    title: 'Karan Singh Sisodia (@AsyncOwl) — AI & Software Engineering',
     description:
-      'AI & Software Engineering Professional | 16+ years transforming ideas into intelligent systems.',
-    type: 'website',
-    locale: 'en_US',
+      'Technical Lead with 16+ years bridging AI, IoT, and full-stack engineering. Open source contributor. Based in Chandigarh, India.',
+    siteName: 'Karan Singh Sisodia — AsyncOwl',
+    locale: 'en_IN',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Karan Singh Sisodia — @AsyncOwl — AI & Software Engineer',
+        type: 'image/png',
+      },
+    ],
+    firstName: 'Karan',
+    lastName: 'Singh Sisodia',
+    username: 'AsyncOwl',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AsyncOwl — Karan Singh Sisodia',
-    description:
-      'AI & Software Engineering Professional | 16+ years transforming ideas into intelligent systems.',
+    site: '@sisodiakaran',
     creator: '@sisodiakaran',
+    title: 'Karan Singh Sisodia (@AsyncOwl) — AI & Software Engineer',
+    description:
+      'Technical Lead • 16+ yrs • AI, IoT, Full-Stack • Chandigarh, India',
+    images: ['/opengraph-image'],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large' as const,
+      'max-snippet': -1,
+    },
+  },
+  // Set GOOGLE_SITE_VERIFICATION in your deployment environment for Google Search Console verification.
+  // When unset, the verification meta tag is omitted.
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
+  applicationName: 'AsyncOwl Portfolio',
+  appleWebApp: {
+    capable: true,
+    title: 'AsyncOwl',
+    statusBarStyle: 'black-translucent',
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: '/logo.svg',
   },
@@ -88,6 +147,7 @@ export default function RootLayout({
       <body
         className={`${spaceMono.variable} ${dmSans.variable} font-sans antialiased min-h-screen`}
       >
+        <JsonLd />
         {children}
       </body>
     </html>

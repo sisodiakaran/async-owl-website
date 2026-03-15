@@ -30,33 +30,33 @@ export default function Footer() {
                 border border-transparent hover:border-brand-yellow-electric/50
                 hover:shadow-[0_0_12px_rgba(255,212,0,0.2)]
                 transition-all duration-300"
-              aria-label="GitHub profile"
+              aria-label="Karan Singh Sisodia on GitHub (@sisodiakaran)"
             >
-              <Github size={20} />
+              <Github size={20} aria-hidden="true" />
             </a>
             <a
               href={SITE_CONFIG.linkedin}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               className="p-2 rounded-lg text-theme-secondary hover:text-brand-yellow-electric
                 border border-transparent hover:border-brand-yellow-electric/50
                 hover:shadow-[0_0_12px_rgba(255,212,0,0.2)]
                 transition-all duration-300"
-              aria-label="LinkedIn profile"
+              aria-label="Karan Singh Sisodia on LinkedIn"
             >
-              <Linkedin size={20} />
+              <Linkedin size={20} aria-hidden="true" />
             </a>
             <a
               href={SITE_CONFIG.twitter}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               className="p-2 rounded-lg text-theme-secondary hover:text-brand-yellow-electric
                 border border-transparent hover:border-brand-yellow-electric/50
                 hover:shadow-[0_0_12px_rgba(255,212,0,0.2)]
                 transition-all duration-300"
-              aria-label="Twitter / X profile"
+              aria-label="Karan Singh Sisodia on Twitter/X (@sisodiakaran)"
             >
-              <Twitter size={20} />
+              <Twitter size={20} aria-hidden="true" />
             </a>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { fetchGitHubRepos } from '@/lib/github'
 import Navbar from '@/components/layout/Navbar'
@@ -11,6 +12,12 @@ import AskAsyncOwl from '@/components/sections/AskAsyncOwl'
 import ContactForm from '@/components/sections/ContactForm'
 
 export const revalidate = 3600
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://asyncowl.com',
+  },
+}
 
 function SectionLoader() {
   return (

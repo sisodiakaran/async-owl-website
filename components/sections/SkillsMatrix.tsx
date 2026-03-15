@@ -41,8 +41,7 @@ export default function SkillsMatrix() {
           transition={{ duration: 0.5 }}
           className="font-mono text-2xl md:text-3xl font-bold text-theme-primary mb-4 text-center"
         >
-          <span className="text-brand-pink-hot">{'> '}</span>
-          stack --matrix
+          Skills & Technology Stack
         </motion.h2>
         <motion.p
           initial={prefersReducedMotion ? {} : { opacity: 0 }}
@@ -67,7 +66,7 @@ export default function SkillsMatrix() {
                   p-5 hover:border-brand-purple-deep/50 dark:hover:border-brand-cream-light/40 transition-all duration-300"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <IconComponent size={20} className="text-brand-pink-hot" />
+                  <IconComponent size={20} className="text-brand-pink-hot" aria-hidden="true" />
                   <h3 className="font-mono text-sm font-bold text-theme-primary dark:text-brand-cream-light">
                     {category.name}
                   </h3>
