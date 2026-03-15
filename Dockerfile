@@ -1,16 +1,11 @@
-# syntax=docker/dockerfile:1
 # Production Dockerfile for AsyncOwl website (Next.js)
 
 # ---- Dependencies ----
 FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
-RUN \
-  if [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-  elif [ -f yarn.lock ]; then corepack enable yarn && yarn install --frozen-lockfile; \
-  else npm ci; \
-  fi
+COPY package.json package-lock.json ./
+RUN npm ci
 
 # ---- Builder ----
 FROM node:22-alpine AS builder
