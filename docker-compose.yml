@@ -1,13 +1,9 @@
 # Production Docker Compose for AsyncOwl website
-# Usage: docker compose up -d
-# Build: docker compose build --no-cache
-# If build fails with "seccomp filter errno 524": ./scripts/build-docker.sh
+# Build image: ./scripts/build-docker.sh
+# Then run:    docker compose up -d
 
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
     image: async-owl-website:latest
     container_name: async-owl-website
     restart: unless-stopped

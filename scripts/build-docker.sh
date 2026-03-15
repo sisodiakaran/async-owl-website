@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Build the Docker image with seccomp disabled (fixes errno 524 on some hosts).
-# Use this if: docker compose build --no-cache fails with "error loading seccomp filter".
+# Build the Docker image (uses seccomp=unconfined so build works on all hosts).
 # Then run: docker compose up -d
 
 set -e
