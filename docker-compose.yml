@@ -1,0 +1,25 @@
+# Production Docker Compose for AsyncOwl website
+# Usage: docker compose up -d
+# Build: docker compose build --no-cache
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: async-owl-website:latest
+    container_name: async-owl-website
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      HOSTNAME: "0.0.0.0"
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
