@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Mono, DM_Sans } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import { JsonLd } from '@/components/seo/JsonLd'
 import ThemeInit from '@/components/ThemeInit'
@@ -118,6 +119,18 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BQETQJHYWT"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BQETQJHYWT');
+          `}
+        </Script>
       </head>
       <body
         className={`${spaceMono.variable} ${dmSans.variable} font-sans antialiased min-h-screen`}

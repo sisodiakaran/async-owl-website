@@ -62,10 +62,10 @@ export default function HomePage() {
         <section className="py-20 md:py-24 px-4" aria-label="Portfolio sections">
           <div className="max-w-6xl mx-auto">
             <h2 className="font-mono text-2xl md:text-3xl font-bold text-theme-primary mb-4 text-center">
-              Explore by topic
+              Choose your deep dive
             </h2>
-            <p className="font-mono text-sm text-theme-secondary text-center mb-10">
-              Dedicated pages for deeper context and better discoverability.
+            <p className="font-mono text-sm text-theme-secondary text-center mb-10 md:mb-15">
+              From AI systems to IoT builds - pick a track and explore the full story.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               {HOME_SECTIONS.map((section) => (
