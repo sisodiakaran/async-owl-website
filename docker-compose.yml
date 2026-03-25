@@ -4,6 +4,8 @@ services:
     image: async-owl-website:latest
     container_name: async-owl-website
     restart: unless-stopped
+    security_opt:
+      - seccomp=unconfined
     ports:
       - "${PORT:-3000}:3000"
     env_file:
