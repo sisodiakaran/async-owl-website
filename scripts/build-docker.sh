@@ -22,6 +22,16 @@ if grep -q "errno 524" "$LOG_FILE"; then
   exit 0
 fi
 
+if grep -Eq "error pulling image configuration|received unexpected HTTP status: 500|toomanyrequests|TLS handshake timeout|i/o timeout" "$LOG_FILE"; then
+  echo ""
+  echo "Detected transient registry/network pull failure."
+  echo "Retrying build once..."
+  echo ""
+  docker compose build --no-cache
+  echo "Build done. Start with: docker compose up -d"
+  exit 0
+fi
+
 echo ""
 echo "Build failed for a reason other than errno 524."
 exit 1

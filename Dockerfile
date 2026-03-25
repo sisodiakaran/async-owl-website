@@ -1,7 +1,9 @@
 # Production Dockerfile for AsyncOwl website (Next.js)
 
 # ---- Dependencies ----
-FROM node:22-bookworm-slim AS deps
+# Use Google's Docker Hub mirror to avoid intermittent Docker Hub 5xx pulls on some servers.
+ARG NODE_IMAGE=mirror.gcr.io/library/node:22-bookworm-slim
+FROM ${NODE_IMAGE} AS deps
 WORKDIR /app
 # Prevent io_uring syscalls that Docker's default seccomp profile blocks on many Linux hosts
 ENV UV_USE_IO_URING=0
@@ -9,7 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 # ---- Builder ----
-FROM node:22-bookworm-slim AS builder
+FROM ${NODE_IMAGE} AS builder
 WORKDIR /app
 ENV UV_USE_IO_URING=0
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -18,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # ---- Runner ----
-FROM node:22-bookworm-slim AS runner
+FROM ${NODE_IMAGE} AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
