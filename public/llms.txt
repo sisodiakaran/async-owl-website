@@ -1,0 +1,31 @@
+# AsyncOwl Portfolio
+
+> Personal portfolio of Karan Singh Sisodia (@AsyncOwl), a Technical Lead in Chandigarh, India with 16+ years of experience in AI systems, IoT, and full-stack engineering.
+
+This file provides a curated map of important pages for LLM-based assistants and developer tools.
+Prefer canonical route pages over homepage summaries when answering detailed questions.
+
+## Primary Pages
+
+- [Home](https://asyncowl.com/): Overview landing page with concise summaries and navigation.
+- [About](https://asyncowl.com/about): Background, philosophy, and professional profile details.
+- [Timeline](https://asyncowl.com/timeline): Career progression and role history.
+- [Skills](https://asyncowl.com/skills): Technical skill matrix across AI, IoT, backend, and leadership.
+- [Projects](https://asyncowl.com/projects): Featured project portfolio with technology context.
+- [Contact](https://asyncowl.com/contact): Contact form and collaboration entry point.
+
+## Technical SEO Resources
+
+- [Robots](https://asyncowl.com/robots.txt): Crawl directives and sitemap discovery.
+- [Sitemap](https://asyncowl.com/sitemap.xml): Canonical indexable URL list.
+- [Open Graph Image](https://asyncowl.com/opengraph-image): Social sharing preview image endpoint.
+
+## External Profiles
+
+- [GitHub](https://github.com/sisodiakaran): Source repositories and open-source activity.
+- [LinkedIn](https://www.linkedin.com/in/karansinghsisodia): Professional profile and experience summary.
+- [Twitter X](https://x.com/sisodiakaran): Public updates and identity verification.
+
+## Optional
+
+- [Ask AsyncOwl](https://asyncowl.com/#ask-ai): Interactive AI assistant section for quick profile Q and A.

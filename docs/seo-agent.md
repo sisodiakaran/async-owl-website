@@ -648,31 +648,29 @@ const nextConfig = {
 
 ---
 
-### 8. URL & Anchor Link Strategy
+### 8. URL Strategy (Multi-Page Architecture)
 
-The site is single-page with anchor navigation. Ensure every section has:
-- A stable `id` attribute (these become crawlable fragment URLs)
-- A matching `<a href="#section-id">` in the navbar
-- Listed in `sitemap.ts` as a `url: baseUrl + '/#section-id'`
+The site uses route-first navigation for crawlability. Core SEO URLs are:
 
-| Section | id | Sitemap URL |
-|---|---|---|
-| Hero | `#home` | `https://asyncowl.dev/` |
-| About | `#about` | `https://asyncowl.dev/#about` |
-| Timeline | `#timeline` | `https://asyncowl.dev/#timeline` |
-| Skills | `#skills` | `https://asyncowl.dev/#skills` |
-| Projects | `#projects` | `https://asyncowl.dev/#projects` |
-| AI Chat | `#ask` | `https://asyncowl.dev/#ask` |
-| Contact | `#contact` | `https://asyncowl.dev/#contact` |
+| Page | Canonical URL |
+|---|---|
+| Home | `https://asyncowl.com/` |
+| About | `https://asyncowl.com/about` |
+| Timeline | `https://asyncowl.com/timeline` |
+| Skills | `https://asyncowl.com/skills` |
+| Projects | `https://asyncowl.com/projects` |
+| Contact | `https://asyncowl.com/contact` |
+
+Anchor IDs may still exist for UX, but they are secondary and must not be primary canonical targets.
 
 ---
 
 ### 9. Link Strategy
 
 #### Internal Links
-- Navbar anchors link to every section (smooth scroll)
-- CTA buttons in hero link to `#projects` and `#ask`
-- Timeline "Learn more" links scroll to relevant project cards
+- Navbar links to route URLs (`/about`, `/timeline`, `/skills`, `/projects`, `/contact`)
+- Homepage uses summary cards with descriptive links to route pages
+- Route pages include contextual cross-links (for example: About -> Timeline, Projects -> Skills)
 
 #### External Links — Must have correct attributes
 ```tsx
@@ -714,15 +712,17 @@ The `rel="me"` attribute on social profile links helps Google confirm Karan's id
 ### 10. Canonical & Duplicate Content
 
 ```tsx
-// app/page.tsx — enforce canonical even on ISR pages
+// app/page.tsx
 export const metadata = {
   alternates: {
-    canonical: 'https://asyncowl.dev',
+    canonical: 'https://asyncowl.com',
   },
 }
 ```
 
-- The site must redirect `www.asyncowl.dev` → `asyncowl.dev` (configure in Vercel dashboard)
+- Canonical rule: dedicated route pages are canonical for section-depth intent.
+- Homepage must remain a distinct summary experience (teasers + "read more" links), not a full duplicate of all route page content.
+- The site must redirect `www.asyncowl.com` → `asyncowl.com` (configure in Vercel dashboard)
 - The site must redirect `http://` → `https://` (Vercel handles this automatically)
 - If the domain is ever changed, update `metadataBase` in `layout.tsx` and all JSON-LD `@id` URLs
 
@@ -835,7 +835,7 @@ Generate a `README_SEO_ACTIONS.md` file with these instructions for Karan:
 - [ ] `metadataBase` set to production domain
 - [ ] `title.template` configured in root layout
 - [ ] Meta description is 150–160 characters
-- [ ] `sitemap.ts` generated and includes all 7 section URLs
+- [ ] `sitemap.ts` includes all canonical routes (`/`, `/about`, `/timeline`, `/skills`, `/projects`, `/contact`)
 - [ ] `robots.ts` allows indexing, blocks `/api/` and `/_next/`
 - [ ] All 4 JSON-LD schemas injected in `<head>` as Server Component
 - [ ] `app/opengraph-image.tsx` generates dynamic OG image
@@ -847,6 +847,8 @@ Generate a `README_SEO_ACTIONS.md` file with these instructions for Karan:
 - [ ] Exactly one `<h1>` on the page containing "Karan Singh Sisodia"
 - [ ] Heading hierarchy is H1 → H2 → H3 (no skipped levels)
 - [ ] All sections use semantic HTML elements (`<section>`, `<article>`, `<time>`, etc.)
+- [ ] Primary navbar uses route URLs (not hash-only section links)
+- [ ] Homepage content is summary-level and links to route pages for full detail
 - [ ] All `<time>` elements have `datetime` attributes
 - [ ] All external links have `rel="noopener noreferrer"`
 - [ ] Social links have `rel="me"` in addition to noopener

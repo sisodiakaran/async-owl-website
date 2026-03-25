@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowDown, MessageSquare } from 'lucide-react'
 import OwlLogo from '@/components/ui/OwlLogo'
@@ -142,8 +143,8 @@ export default function HeroTerminal() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={() => scrollToSection('projects')}
+              <Link
+                href="/projects"
                 className="flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm
                   bg-brand-purple-deep text-brand-cream-light
                   border border-brand-purple-deep hover:border-brand-yellow-electric
@@ -153,7 +154,7 @@ export default function HeroTerminal() {
               >
                 <ArrowDown size={16} />
                 {'>'} Explore Work
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection('ask-ai')}
                 className="flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm

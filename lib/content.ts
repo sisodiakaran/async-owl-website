@@ -224,10 +224,9 @@ export const BOOT_SEQUENCE_LINES = [
 ]
 
 export const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Timeline', href: '#timeline' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Ask AI', href: '#ask-ai' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/about' },
+  { label: 'Timeline', href: '/timeline' },
+  { label: 'Skills', href: '/skills' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Contact', href: '/contact' },
 ]
