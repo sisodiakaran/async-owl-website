@@ -27,11 +27,11 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://static.cloudflareinsights.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: https://avatars.githubusercontent.com https://github.com",
-              "connect-src 'self' https://api.github.com https://api.openai.com",
+              "connect-src 'self' https://api.github.com https://api.openai.com https://www.google-analytics.com https://region1.google-analytics.com https://cloudflareinsights.com",
             ].join('; '),
           },
         ],
